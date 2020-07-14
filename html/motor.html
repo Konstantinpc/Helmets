@@ -9,11 +9,11 @@
   <style>
   </style>
 </head>
-<body>
+<body onload="load()">
 
   <header class="navbar">
     <ul class="navbar_list">
-      <li><a class="logo" style="float: left;">Helmets</a></li>
+      <li><a class="logo">Helmets</a></li>
 
       <li><a class="navbar_item" href="basket.html">
         <img src="https://i0.wp.com/afriwestmedia.com/wp-content/uploads/2017/03/white-shopping-cart-icon.png?fit=300%2C300" 
@@ -36,18 +36,19 @@
     
   </header>
 
-  <main class="home" style="height: 200%;">
+  <main class="home" style="height: 100%;">
     
 
     <table id="myTable">
         <tr class="header">
             <th><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.."></th>
-            <th style="width:60%;">Name</th>
+            <th>Name</th>
             
-            <th style="width:40%;">Country</th>
-            <th style="width:60%;">Material</th>
-            <th style="width:60%;">Protection</th>
-            <th style="width:60%;">Price</th>
+            <th>Country</th>
+            <th>Material</th>
+            <th>Protection</th>
+            <th>Price</th>
+            <th>Size</th>
             <th></th>
 
         </tr>
@@ -59,8 +60,12 @@
             <td>Carbon, Glass, Plastic</td>
             <td>88%</td>
             <td>88 EU</td>
-            <td><button>Buy</button></td>
-
+            <td><div class="slidecontainer">
+              <input type="range" min="0" max="100" value="60" class="slider" id="myRange1" step="20" onchange='slider("myRange1", "demo1")'>
+              <p>Size: <span id="demo1" ></span></p>
+            </div></td>
+            <td><button class="addToCart" onclick="AddToCart('https:\/\/www.grootgadgets.com/wp-content/uploads/2016/10/masei-610-iron-man-motorcycle-helmet-grootgadgets-2.jpg', 'Iron Man', 88, getSize('demo1'), 'Germany')">Buy</button></td>
+            
         </tr>
         <tr>
           <td><img alt="Retro" src="https://imgaz3.staticbg.com/thumb/large/oaupload/banggood/images/B1/70/a387d58f-8767-472f-8675-8eba97abc96a.jpg"
@@ -70,12 +75,16 @@
           <td>Wood, Glass, Plastic</td>
           <td>54%</td>
           <td>54 EU</td>
-          <td><button onclick="AddToCart('Retro motorcycle', '54', 'France')">Buy</button></td>
+          <td><div class="slidecontainer">
+            <input type="range" min="0" max="100" value="60" class="slider" id="myRange" step="20" onchange='slider("myRange", "demo")'>
+            <p>Size: <span id="demo"></span></p>
+          </div></td>
+          <td><button class="addToCart" onclick="AddToCart('https:\/\/imgaz3.staticbg.com/thumb/large/oaupload/banggood/images/B1/70/a387d58f-8767-472f-8675-8eba97abc96a.jpg', 'Retro motorcycle', 54, getSize('demo'), 'France')">Buy</button></td>
         </tr>
         
     </table>
     <script src="../js/search.js"></script>
-
+    <script src="../js/size.js"></script>
   </main>
 
   <script src="../js/main.js"></script>

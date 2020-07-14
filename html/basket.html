@@ -15,14 +15,14 @@
     <ul class="navbar_list">
       <li><a class="logo" style="float: left;">Helmets</a></li>
 
-      <li><a class="navbar_item" href="basket.html">
+      <li><a class="navbar_item active" href="basket.html">
         <img src="https://i0.wp.com/afriwestmedia.com/wp-content/uploads/2017/03/white-shopping-cart-icon.png?fit=300%2C300" 
         alt="Кошница" width="24" height="18">
       </a></li>
       <li><a class="navbar_item" href="about.html">About Us
       </a></li>
       <li class="dropdown">
-        <a href="products.html" class="dropbtn active" >Products</a>
+        <a href="products.html" class="dropbtn" >Products</a>
         <div class="dropdown-content">
           <a href="motor.html">Motorcycle helmets</a>
           <a href="pos_plag.html">Positional plagiocephaly</a>
@@ -36,10 +36,52 @@
     
   </header>
 
-  <main class="home" style="height: 200%;">
+  <main class="home" style="min-height: 200%;">
     
-   
+    <nav id="output_div"></nav>
+    
+    <script>
+        var outputHTML = "";
+        var productsInCart = [];
+        var sum = 0;
+        productsInCart = JSON.parse(localStorage.getItem("products"));
+        outputHTML += '<table id="myTable">';
+        outputHTML += '<tr class="header">'; 
+        outputHTML += '<th></th>';
+        outputHTML += '<th>Name</th>';
+        outputHTML += '<th>Price</th>';
+        outputHTML += '<th>Size</th>';
+        outputHTML += '<th>Country</th>';
+        outputHTML += '</tr>';
+        for (var i = 0; i < productsInCart.length; i++) {
+                var result = Object.keys(productsInCart[i]).map((key) => [productsInCart[i][key]]);
+                outputHTML += "<tr>";
+                outputHTML += '<td><img alt="Pic" src = "' + result[0] + '"'+ ' width="200" height="200"></td>';
+                sum=Number(result[2])+Number(sum);
+                for (var k = 1; k < result.length; k++) {
+                  outputHTML += "<td>" + result[k] + "</td>";
+                }
+                outputHTML += "</tr>";
+            
+        }
+        
 
+        outputHTML += '<tr><td colspan="5"><button class = "buybutton" onclick=\'cleanLocalStorage()\'>'+'Purchase for '+sum+' EU'+'</button></tr>';
+        outputHTML += "</table>";
+
+        // output our html
+        document.getElementById("output_div").innerHTML = outputHTML;
+    </script>
+    <script>
+      function cleanLocalStorage() {
+        for(key in localStorage) {
+            delete localStorage[key];
+        }
+        location.reload();
+        alert("Congratulation!!! For your choice!");
+        
+      }
+    </script>
   </main>
 
   

@@ -1,10 +1,18 @@
-function AddToCart(name, price, country){
-    var new_t = localStorage.getItem("products");
-    var array_of_products;
-    array_of_products.push(new_t);
-    array_of_products.push(name);
+function AddToCart(pic, name, price, size, country){
+    var productsInCart = []
+
+    if(JSON.parse(localStorage.getItem("products"))){
+        productsInCart = JSON.parse(localStorage.getItem("products"));
+    }
+   
+    var array_of_products = {pic, name, price, size, country};
+
+    if(productsInCart !== null){
+        productsInCart.push(array_of_products);
+       
+    }
     
-    localStorage.setItem("products", JSON.stringify(array_of_products));
+    localStorage.setItem("products", JSON.stringify(productsInCart));
     
-    console.log(localStorage.getItem("products"));
+    console.log(JSON.parse(localStorage.getItem("products")));
 }
